@@ -771,7 +771,8 @@ textarea.fc{resize:vertical;min-height:80px}
 .input-wrap { position: relative; }
 </style>
   <!-- Chart.js -->
-  <script src="https://cdn.jsdelivr.net/npm/chart.js@4/dist/chart.umd.min.js">
+  <script src="https://cdn.jsdelivr.net/npm/chart.js@4/dist/chart.umd.min.js"></script>
+<script>
 // ══════════════════════════════════════════════════════════
 // PHASE 1 — NEW FUNCTIONS
 // ══════════════════════════════════════════════════════════
@@ -1293,8 +1294,8 @@ async function generateFutureCF() {
             +'</td></tr>';
         }
         var daysLeft = Math.round((p.date-today)/86400000);
-        var urgency = daysLeft<=7?'#FEF2F2':'daysLeft<=14?'#FEF3C7':'#F0FDF4';
-        var urgencyTxt = daysLeft<=7?'#DC2626':'daysLeft<=14?'#D97706':'#16A34A';
+        var urgency = daysLeft<=7?"#FEF2F2":daysLeft<=14?"#FEF3C7":"#F0FDF4";
+        var urgencyTxt = daysLeft<=7?"#DC2626":daysLeft<=14?"#D97706":"#16A34A";
         var urgencyLabel = daysLeft<=0?'متأخر':daysLeft===0?'اليوم':daysLeft+' يوم';
         html += '<tr style="border-top:1px solid #F3F4F6;background:'+urgency+'">'
           +'<td style="padding:9px 12px;font-size:13px;font-weight:600">'+p.date.toISOString().split('T')[0]+'</td>'
@@ -1770,23 +1771,7 @@ function safePrint(contentId, title, bgColor) {
   doc.write('<h1>' + title + '</h1>');
   doc.write('<p>تاريخ الطباعة: ' + new Date().toLocaleDateString('ar-SA') + '</p>');
   doc.write(c.innerHTML);
-  doc.write('</body>
-<!-- OCCUPANCY MODAL -->
-<div id="modalOccupancy" style="display:none;position:fixed;inset:0;z-index:999;background:rgba(0,0,0,0.5);overflow-y:auto">
-  <div style="max-width:860px;margin:30px auto;background:white;border-radius:16px;overflow:hidden;box-shadow:0 20px 60px rgba(0,0,0,0.3)">
-    <div style="background:#2563EB;padding:18px 24px;display:flex;align-items:center;justify-content:space-between">
-      <span style="color:white;font-size:17px;font-weight:700">&#x1F3E2; تقرير الإشغال</span>
-      <button onclick="closeModal('modalOccupancy')" style="background:rgba(255,255,255,0.2);border:none;color:white;width:32px;height:32px;border-radius:50%;cursor:pointer;font-size:18px">&#x00D7;</button>
-    </div>
-    <div style="padding:20px">
-      <div id="occupancyContent">
-        <div style="text-align:center;padding:20px;color:#9CA3AF">جاري التحميل...</div>
-      </div>
-    </div>
-  </div>
-</div>
-
-</html>');
+  doc.write('</body></html>');
   doc.close();
   setTimeout(function(){ w.print(); }, 500);
 }
@@ -2085,8 +2070,9 @@ async function loadDashboardData() {
     }
   } catch(e){ console.error('loadDashboardData:', e); }
 }
-
 </script>
+
+
   <!-- Supabase SDK -->
   <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 </head>
